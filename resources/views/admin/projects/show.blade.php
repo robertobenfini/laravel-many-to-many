@@ -23,6 +23,15 @@
                     {{ $project->type->name }}
                 </div>
 
+                <div>
+                    <strong>Tecnologie:</strong>
+                    @if($project->technologies)
+                        @foreach($project->technologies as $technology)
+                            <a href="">{{ $technology->name }}</a>
+                        @endforeach
+                    @endif
+                </div>
+
                 <p>
                     {{ $project->content }}
                 </p>

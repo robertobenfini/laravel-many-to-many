@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
 
 class ProjectController extends Controller
 {
@@ -30,7 +31,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -59,7 +61,11 @@ class ProjectController extends Controller
         
         $project->save();
 
-        return redirect()->route('admin.projects.index');
+        if($request->has('technologies')){
+            $project->technologies()->sync($request->technologies);
+        }
+
+        return redirect()->route('admin.projects.index')->with('message', 'Progetto salvato correttamente');
 
     }
 

@@ -26,7 +26,8 @@ class UpdateProjectRequest extends FormRequest
         return [
             'title' => 'required|max:50',
             'image' => 'image',
-            'type_id' => 'required|exists:types,id'
+            'type_id' => 'required|exists:types,id',
+            'technology_id' => 'exists:technologies,id'
 
         ];
     }
@@ -39,7 +40,9 @@ class UpdateProjectRequest extends FormRequest
             'image.image' => 'Il file deve essere un\'immagine',
 
             'type_id.required' => 'Devi selezionare il tipo',
-            'type_id.exists' => 'Tipo selezionato non valido'
+            'type_id.exists' => 'Tipo selezionato non valido',
+
+            'technology_id.exist' => 'Tecnologia selezionata non valida'
         ];
     }
 }
