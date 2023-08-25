@@ -57,9 +57,9 @@
                             @foreach($technologies as $technology)
                                 <div class="form-check @error('technology') is-invalid @enderror">
                                     @if($errors->any())
-                                    <input type="checkbox" name="technologies[]" value="{{ $technology->id }}" class="form-check-input" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : ''}}>
+                                        <input type="checkbox" name="technologies[]" value="{{ $technology->id }}" class="form-check-input" {{ in_array($technology->id, old('technologies', [])) ? 'checked' : ''}}>
                                     @else
-                                        
+                                        <input type="checkbox" name="technologies[]" value="{{ $technology->id }}" class="form-check-input" {{ $project->technologies->contains($technology) ? 'checked':'' }}>
                                     @endif
                                     <label class="form-check-label">
                                         {{ $technology->name }}
